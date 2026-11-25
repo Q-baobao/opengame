@@ -31,9 +31,8 @@ import { attachableReferenceLimit, creationModels } from './creationModels';
 import { isOpenDesignProvider, modelFamilyLabel, providerDisplayName } from './imageMenuModels';
 import { registeredProvider } from '../../../shared/provider-registry';
 import { ProviderSetupNotice } from './ProviderSetupNotice';
-import { useAccountSummary } from './AccountSettings';
 import { BLACK_FRIDAY_CAMPAIGN, campaignPricingUrl, newCampaignEntryId, useBlackFridayActive } from './campaignAttribution';
-import { readAccountPlan, setPendingAttribution, useCheckoutReturnRefresh } from './entitlementAttribution';
+import { setPendingAttribution, useCheckoutReturnRefresh } from './entitlementAttribution';
 import { detectMonetizationGateFromError, openMonetizationGate, openResolutionGate } from './monetization/monetizationGateBus';
 import { send } from './reporting';
 
@@ -49,14 +48,10 @@ export function AssetComposer({ active, studio, draft, setDraft, agentReferences
   onCreated: (job: GenerationJob) => void; onResume?: (job: GenerationJob) => Promise<void>; onError: (message: string) => void; onInfo?: (message: string) => void; onClose: () => void;
 }) {
   const { locale, t } = useI18n(), { openModelSettings, openProviderSettings, openAccountSettings, openSubscriptionSettings } = useWorkspaceChrome();
-  const { account } = useAccountSummary({ eager: false });
   const campaign = useBlackFridayActive();
   const [freeGateEntryId, setFreeGateEntryId] = useState(newCampaignEntryId);
   const trackingPageForHook = studio ? 'creative_studio' as const : 'assets' as const;
   const markFreeGateCheckoutReturn = useCheckoutReturnRefresh(trackingPageForHook, 'studio_free_gate');
-  const currentPlan = readAccountPlan(account);
-  const canUseHighRes = Boolean(currentPlan && ['pro', 'max', 'ultra', 'team', 'enterprise'].includes(currentPlan));
-  const isLockedHighRes = (value: string) => !canUseHighRes && /^(2k|4k|2160p|1440p)$/i.test(value.trim());
   const scene = studio?.destination.scene;
   const imageWorkspace = studio?.destination.studio.id === 'design' && scene?.modality === 'image';
   const videoLanding = Boolean(studio?.destination.landing && scene?.modality === 'video');
@@ -101,6 +96,7 @@ export function AssetComposer({ active, studio, draft, setDraft, agentReferences
   const unconfiguredPreferred = Boolean(studio && gateway && preferred && !selected && preferredProvider && !preferredProvider.available);
   const providerLabel = preferredProvider?.label ?? (preferred && registeredProvider(preferred.provider)?.label) ?? preferred?.provider ?? '';
   const accountNotIncluded = selected?.provider === 'account' && preferredProvider?.mediaEntitlement === 'not-included';
+  const isLockedHighRes = (value: string) => Boolean(accountNotIncluded) && /^(2k|4k|2160p|1440p)$/i.test(value.trim());
   const capabilityMaxReferences = activeCapability?.input.maxReferences;
   const maximumReferences = selected
     ? Math.min(modelReferenceLimit(selected), featureRule?.maxReferences ?? Infinity, capabilityMaxReferences ?? Infinity)

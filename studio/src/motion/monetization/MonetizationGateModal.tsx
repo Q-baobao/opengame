@@ -70,6 +70,8 @@ export function MonetizationGateModal() {
 
   const baselineRef = useRef<{ plan: string | undefined; balance: number | null }>({ plan: undefined, balance: null });
   const pollAttemptsRef = useRef(0);
+  const checkInFlightRef = useRef(false);
+  const lastReturnCheckAtRef = useRef(0);
   const activeGateRef = useRef<MonetizationGateRequest | null>(null);
   activeGateRef.current = gate;
 
@@ -112,7 +114,8 @@ export function MonetizationGateModal() {
 
   const checkEntitlementNow = useCallback(async (fromPoll = false) => {
     const current = activeGateRef.current;
-    if (!current) return;
+    if (!current || checkInFlightRef.current) return;
+    checkInFlightRef.current = true;
     const hookId = gateHookId(current.kind);
     const pageName = current.pageName ?? 'creative_studio';
     if (!fromPoll) setChecking(true);
@@ -137,6 +140,7 @@ export function MonetizationGateModal() {
         reportEntitlementRefresh(pageName, hookId, entryId, 'failure', false);
       }
     } finally {
+      checkInFlightRef.current = false;
       if (!fromPoll) setChecking(false);
     }
   }, [entryId]);
@@ -154,9 +158,11 @@ export function MonetizationGateModal() {
     }, POLL_INTERVAL_MS);
 
     const onReturn = () => {
-      if (document.visibilityState === 'visible') {
-        void checkEntitlementNow(false);
-      }
+      if (document.visibilityState !== 'visible') return;
+      const now = Date.now();
+      if (now - lastReturnCheckAtRef.current < 1500) return;
+      lastReturnCheckAtRef.current = now;
+      void checkEntitlementNow(false);
     };
     window.addEventListener('focus', onReturn);
     document.addEventListener('visibilitychange', onReturn);
@@ -246,7 +252,7 @@ export function MonetizationGateModal() {
             <div className="om-mg-card" data-tone={tone}>
               <div className="om-mg-meta">
                 <span className="om-mg-pill" data-tone={tone}>
-                  <RemixIcon name={isBalance ? (isPastDue ? 'lock-line' : 'flashlight-line') : isResolution ? 'hd-line' : 'stack-line'} size={13} />
+                  <RemixIcon name={isBalance ? (isPastDue ? 'lock-line' : 'flashlight-line') : isResolution ? 'image-line' : 'stack-line'} size={13} />
                   <span>{isBalance ? t('OpenGame Credits') : isResolution ? t('High Resolution') : t('Parallel Builds')}</span>
                 </span>
                 <span className="om-mg-pill">{currentPlan}</span>

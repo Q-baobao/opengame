@@ -160,16 +160,19 @@ function OpenDesignChoice({ session, onNotify }: { session: GamePublishSession; 
   const isPaidPlan = signedIn && Boolean(plan) && plan !== 'free';
   const needsSignIn = Boolean(account && !signedIn && (session.linkToo || session.linkError?.authRequired));
 
-  // Auto-publish the OpenDesign link once sign-in triggered from this panel finishes.
+  // Auto-publish the OpenDesign link once sign-in triggered from this panel finishes,
+  // and clear the pending auto-publish if authorization was cancelled or failed.
   useEffect(() => {
     if (prevStateRef.current !== 'signed-in' && signedIn && pendingPublishAfterSignInRef.current) {
       pendingPublishAfterSignInRef.current = false;
       notifyProvidersChanged();
       window.dispatchEvent(new Event('motion:account-changed'));
       void gamePublishActions.publishLink(session.artifactId);
+    } else if (prevStateRef.current === 'authorizing' && !authorizing && !signedIn) {
+      pendingPublishAfterSignInRef.current = false;
     }
     prevStateRef.current = account?.state;
-  }, [account?.state, signedIn, session.artifactId]);
+  }, [account?.state, authorizing, signedIn, session.artifactId]);
 
   // Report gate impression once per distinct state.
   useEffect(() => {

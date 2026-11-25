@@ -80,9 +80,8 @@ export const entitlementHookIds = [
   'settings_subscription', 'studio_free_gate', 'model_picker_upgrade', 'studio_res_gate',
   'failure_card_topup', 'mcp_oauth',
   'model_hub_signin', 'model_hub_upgrade', 'game_publish_signin', 'cloud_share_signin',
-  'balance_gate_topup', 'concurrency_gate_upgrade', 'artifact_delivery_upgrade',
+  'balance_gate_topup', 'concurrency_gate_upgrade',
   'game_publish_panel_signin', 'game_publish_unlisted_upgrade',
-  'referral_invite_card', 'campaign_touchpoint_modal', 'whats_new_cta', 'message_center_cta',
 ] as const;
 export type EntitlementHookId = (typeof entitlementHookIds)[number];
 const campaign = { campaign_id: ['black_friday_2026'], entry_id: 'uuid', hook_id: entitlementHookIds } as const;
@@ -219,8 +218,8 @@ export const omEvents = {
       'project_manager', 'version_history',
       'creative_nav', 'explore_tabs', 'explore_spotlight', 'explore_featured', 'explore_feed', 'explore_collection', 'capability_index', 'studio_bar', 'model_overview',
       'hub_header', 'hub_hero', 'hub_videos', 'hub_video_detail', 'hub_availability', 'campaign_banner',
-      'game_composer', 'game_market', 'game_detail', 'game_handoff', 'game_sidebar', 'game_publish', 'web_publish',
-      'command_palette', 'template_zero_result_skills', 'entitlement_modal', 'entitlement_gate', 'growth_surface'],
+      'game_composer', 'game_market', 'game_detail', 'game_handoff', 'game_sidebar', 'web_publish',
+      'command_palette', 'template_zero_result_skills', 'entitlement_modal', 'entitlement_gate'],
     element: ['new_creation', 'recent_session', 'open_project', 'select_template', 'copy_template',
       'select_work', 'select_chapter', 'browse_timeline', 'expand_learning', 'compare_brands',
       'open_detail', 'start_use', 'expand_instruction', 'open_collection', 'category_select', 'filter_open', 'filter_clear',
@@ -256,7 +255,7 @@ export const omEvents = {
       'create_trailer', 'regenerate_trailer', 'open_trailer_project', 'open_game_studio', 'view_all_games',
       'open_palette', 'select_result', 'scope_tab', 'popular_topic', 'ask_super_agent',
       'open_skill_fallback', 'toggle_options', 'toggle_instruction', 'run_super_agent',
-      'close_modal', 'dismiss_modal', 'check_balance', 'copy_referral_link', 'open_invite', 'open_cta', 'dismiss_card'],
+      'close_modal', 'check_balance'],
     // The chosen value of a control with a small fixed set of choices; never free text.
     option: ['on', 'off', 'light', 'dark', 'en', 'zh-CN', 'ja', 'ko', 'de', 'fr', 'ru', 'es', 'pt-BR', 'it', 'tr',
       'all', 'images', 'video', 'audio', 'fonts',
@@ -300,8 +299,8 @@ export const omEvents = {
     required: ['outcome', 'entry_point', 'requested_count', 'added_count', 'failed_count'] },
   // A surface that became visible: the library, a template card, one template's detail, or the instruction to copy.
   // A card counts once it is at least half visible for a second, once per result set.
-  surface_view: { producers: ['studio'], fields: { page_name: pages, area: ['template_library', 'template_card', 'template_detail', 'template_instruction', 'template_discovery', 'template_related', 'template_guide', 'skill_detail', 'brand_detail', 'template_series_card', 'template_series_detail', 'template_series_work', 'campaign_banner', 'command_palette', 'template_zero_result_skills', 'entitlement_modal', 'entitlement_gate', 'growth_surface', 'game_detail', 'game_handoff', 'game_publish'],
-    element: ['library', 'card', 'detail', 'instruction', 'search_recovery', 'reference', 'related', 'guide', 'banner', 'palette', 'skill_fallback', 'modal', 'gate_card', 'handoff', 'referral_card'], ...campaign, placement, position: 'integer', source_template_id: 'slug', ...templateList, ...templateDetail, ...template, ...templateSeries,
+  surface_view: { producers: ['studio'], fields: { page_name: pages, area: ['template_library', 'template_card', 'template_detail', 'template_instruction', 'template_discovery', 'template_related', 'template_guide', 'skill_detail', 'brand_detail', 'template_series_card', 'template_series_detail', 'template_series_work', 'campaign_banner', 'command_palette', 'template_zero_result_skills', 'entitlement_modal', 'entitlement_gate', 'game_detail', 'game_handoff'],
+    element: ['library', 'card', 'detail', 'instruction', 'search_recovery', 'reference', 'related', 'guide', 'banner', 'palette', 'skill_fallback', 'modal', 'gate_card', 'handoff'], ...campaign, placement, position: 'integer', source_template_id: 'slug', ...templateList, ...templateDetail, ...template, ...templateSeries,
     ...skill, ...brand, ...referenceEntry, brand_state: brandState, recovery_reason: ['no_results', 'unsuitable', 'catalog_empty'],
     studio_id: creative.studio_id, ...game, publish_target: webPublishTargets },
     required: ['page_name', 'area', 'element'] },

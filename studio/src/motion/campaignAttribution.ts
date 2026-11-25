@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { attributedEntryId, PRODUCT_ID } from '../../../shared/product-identity';
 
 /**
  * Black Friday campaign links from OpenMotion to the OpenDesign Pricing page.
@@ -57,7 +56,7 @@ const readBlackFridayActive = () => blackFridayActive();
 export const useBlackFridayActive = () => useMinuteCondition(readBlackFridayActive)[0];
 export const shouldShowBlackFridayBanner = () => blackFridayActive() && !bannerDismissedToday();
 
-/** Where the click happened: top banner, header Pricing, or a monetization gate/growth surface. */
+/** Where the click happened: top banner, header Pricing, or a monetization gate/touchpoint. */
 export type CampaignEntrySource =
   | 'openmotion_bf_banner'
   | 'openmotion_header_pricing'
@@ -66,14 +65,12 @@ export type CampaignEntrySource =
   | 'opengame_resolution_gate'
   | 'opengame_studio_free_gate'
   | 'opengame_agent_upgrade'
-  | 'opengame_artifact_upgrade'
-  | 'opengame_publish_unlisted'
-  | 'opengame_campaign_modal';
+  | 'opengame_publish_unlisted';
 /**
  * The `od_entry_source` sent for these entries. AMR keeps an attribution only for registered sources, and
  * `openmotion_manage_subscription` is the source it already accepts; an unregistered value would drop the
- * whole attribution, entry id included. Entries are distinguished by `utm_medium`, `utm_source=opengame`,
- * the `opengame-` prefix on `od_entry_id`, and the click event carrying the raw `entry_id`.
+ * whole attribution, entry id included. Entries are distinguished by `utm_medium` and by the click event
+ * that carries the exact same `entry_id`.
  */
 const REGISTERED_ENTRY_SOURCE = 'openmotion_manage_subscription';
 const utmMedium: Record<CampaignEntrySource, string> = {
@@ -84,23 +81,21 @@ const utmMedium: Record<CampaignEntrySource, string> = {
   opengame_resolution_gate: 'resolution_gate',
   opengame_studio_free_gate: 'studio_free_gate',
   opengame_agent_upgrade: 'agent_upgrade',
-  opengame_artifact_upgrade: 'artifact_upgrade',
   opengame_publish_unlisted: 'game_publish_unlisted',
-  opengame_campaign_modal: 'campaign_modal',
 };
 
 export function newCampaignEntryId() {
   return crypto.randomUUID();
 }
 
-export function campaignPricingUrl(locale: string, source: CampaignEntrySource, entryId: string, at = new Date(), campaign = blackFridayActive(at.getTime())) {
-  const url = new URL(locale.startsWith('zh') ? 'https://open-design.ai/zh/pricing/' : 'https://open-design.ai/pricing/');
+export function campaignPricingUrl(locale: string | undefined, source: CampaignEntrySource, entryId: string, at = new Date(), campaign = blackFridayActive(at.getTime())) {
+  const url = new URL((locale ?? '').startsWith('zh') ? 'https://open-design.ai/zh/pricing/' : 'https://open-design.ai/pricing/');
   url.search = new URLSearchParams({
     od_origin: 'openmotion',
     od_entry_source: REGISTERED_ENTRY_SOURCE,
-    od_entry_id: attributedEntryId(entryId),
+    od_entry_id: entryId,
     od_entry_at: at.toISOString(),
-    utm_source: PRODUCT_ID,
+    utm_source: 'openmotion',
     utm_medium: utmMedium[source],
     ...(campaign ? { utm_campaign: BLACK_FRIDAY_CAMPAIGN } : {}),
   }).toString();

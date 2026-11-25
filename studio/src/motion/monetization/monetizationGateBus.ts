@@ -82,10 +82,12 @@ export function detectMonetizationGateFromError(error: { status?: number; code?:
     || code === 'credits_exhausted'
     || code === 'quota_exceeded'
     || code === 'billing_past_due'
+    || message.includes('balance is too low')
     || message.includes('insufficient balance')
     || message.includes('insufficient credits')
     || message.includes('out of credits')
     || message.includes('quota depleted')
+    || (message.includes('balance') && message.includes('top up'))
   ) {
     const reason = code === 'billing_past_due'
       ? 'billing_past_due'
