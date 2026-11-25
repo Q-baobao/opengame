@@ -31,7 +31,10 @@
     "Upgrade to Go+": "升级至 Go+",
     "Unlisted playtest links unlocked on your plan": "当前套餐已解锁「仅链接可见」私密试玩",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "登录并升级至 Plus，即可在 OpenGame 直接生成 3D 资产、游戏美术、音效、配音与视频，无需配置 API Key。",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "升级至 Plus 即可一键使用 3D 资产、游戏美术、音效、音乐与视频多模态生成（Pro 和 Max 同样包含）。"
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "升级至 Plus 即可一键使用 3D 资产、游戏美术、音效、音乐与视频多模态生成（Pro 和 Max 同样包含）。",
+    "Upgrade to unlock {resolution} output": "升级解锁 {resolution} 超清生成",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "{resolution} 超清图片与视频生成需要 OpenDesign Pro 及以上套餐。升级前将保持当前可用分辨率不变。",
+    "High Resolution": "超清分辨率"
   },
   "ja": {
     "Billing needs attention": "お支払い状況の確認が必要です",
@@ -65,7 +68,10 @@
     "Upgrade to Go+": "Go+ にアップグレード",
     "Unlisted playtest links unlocked on your plan": "ご利用プランでは限定公開リンクが利用可能です",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "サインインしてPlusにアップグレードすると、APIキー不要でOpenGame内で3Dアセット、ゲームアート、効果音、音声、動画を生成できます。",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Plusにアップグレードすると3Dアセット、ゲームアート、効果音、音楽、動画を生成できます（Pro・Maxにも含まれます）。"
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Plusにアップグレードすると3Dアセット、ゲームアート、効果音、音楽、動画を生成できます（Pro・Maxにも含まれます）。",
+    "Upgrade to unlock {resolution} output": "アップグレードして {resolution} 出力を解放",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "{resolution} の高解像度画像・動画生成には OpenDesign Pro 以上が必要です。アップグレードまで現在の解像度が維持されます。",
+    "High Resolution": "高解像度"
   },
   "ko": {
     "Billing needs attention": "결제 확인이 필요합니다",
@@ -99,7 +105,10 @@
     "Upgrade to Go+": "Go+로 업그레이드",
     "Unlisted playtest links unlocked on your plan": "현재 플랜에서 일부 공개 링크가 활성화되어 있습니다",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "로그인 후 Plus로 업그레이드하면 API 키 설정 없이 OpenGame에서 3D 에셋, 게임 아트, 효과음, 보이스, 영상을 생성할 수 있습니다.",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Plus로 업그레이드해 3D 에셋, 게임 아트, 효과음, 음악, 영상을 생성하세요. Pro와 Max에도 포함됩니다."
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Plus로 업그레이드해 3D 에셋, 게임 아트, 효과음, 음악, 영상을 생성하세요. Pro와 Max에도 포함됩니다.",
+    "Upgrade to unlock {resolution} output": "업그레이드하여 {resolution} 출력 잠금 해제",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "{resolution} 고해상도 이미지 및 영상 생성에는 OpenDesign Pro 이상이 필요합니다. 업그레이드 전까지 현재 해상도가 유지됩니다.",
+    "High Resolution": "고해상도"
   },
   "de": {
     "Billing needs attention": "Abrechnung prüfen",
@@ -133,7 +142,10 @@
     "Upgrade to Go+": "Auf Go+ upgraden",
     "Unlisted playtest links unlocked on your plan": "Nicht gelistete Playtest-Links sind in deinem Tarif enthalten",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "Melde dich an und upgrade auf Plus, um 3D-Assets, Game Art, SFX, Sprache und Video direkt in OpenGame ohne API-Keys zu generieren.",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Upgrade auf Plus für 3D-Assets, Game Art, SFX, Musik und Video. Auch in Pro und Max enthalten."
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Upgrade auf Plus für 3D-Assets, Game Art, SFX, Musik und Video. Auch in Pro und Max enthalten.",
+    "Upgrade to unlock {resolution} output": "Upgrade für {resolution}-Ausgabe",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "Hochauflösende {resolution}-Bilder und -Videos erfordern OpenDesign Pro oder höher. Deine aktuelle Auflösung bleibt unverändert.",
+    "High Resolution": "Hohe Auflösung"
   },
   "fr": {
     "Billing needs attention": "Facturation à vérifier",
@@ -167,7 +179,10 @@
     "Upgrade to Go+": "Passer à Go+",
     "Unlisted playtest links unlocked on your plan": "Liens non répertoriés débloqués avec votre forfait",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "Connectez-vous puis passez à Plus pour générer des assets 3D, visuels, SFX, voix et vidéos dans OpenGame sans clé API.",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Passez à Plus pour générer des assets 3D, visuels, SFX, musiques et vidéos. Inclus aussi dans Pro et Max."
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Passez à Plus pour générer des assets 3D, visuels, SFX, musiques et vidéos. Inclus aussi dans Pro et Max.",
+    "Upgrade to unlock {resolution} output": "Passez à Pro pour la sortie {resolution}",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "La génération d'images et de vidéos en {resolution} nécessite OpenDesign Pro ou supérieur. Votre résolution actuelle reste sélectionnée.",
+    "High Resolution": "Haute résolution"
   },
   "ru": {
     "Billing needs attention": "Требуется проверка оплаты",
@@ -201,7 +216,10 @@
     "Upgrade to Go+": "Перейти на Go+",
     "Unlisted playtest links unlocked on your plan": "Приватные ссылки доступны на вашем тарифе",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "Войдите и перейдите на Plus, чтобы создавать 3D-ассеты, графику, звуки, озвучку и видео прямо в OpenGame без API-ключей.",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Перейдите на Plus для генерации 3D-ассетов, графики, звуков, музыки и видео. Также включено в Pro и Max."
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Перейдите на Plus для генерации 3D-ассетов, графики, звуков, музыки и видео. Также включено в Pro и Max.",
+    "Upgrade to unlock {resolution} output": "Обновите тариф для вывода в {resolution}",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "Генерация изображений и видео в {resolution} требует OpenDesign Pro и выше. Текущее разрешение сохранится.",
+    "High Resolution": "Высокое разрешение"
   },
   "es": {
     "Billing needs attention": "La facturación requiere atención",
@@ -235,7 +253,10 @@
     "Upgrade to Go+": "Mejorar a Go+",
     "Unlisted playtest links unlocked on your plan": "Enlaces ocultos desbloqueados en tu plan",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "Inicia sesión y mejora a Plus para generar activos 3D, arte, SFX, voces y video directamente en OpenGame sin API keys.",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Mejora a Plus para generar activos 3D, arte, SFX, música y video. También incluido en Pro y Max."
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Mejora a Plus para generar activos 3D, arte, SFX, música y video. También incluido en Pro y Max.",
+    "Upgrade to unlock {resolution} output": "Mejora tu plan para salida en {resolution}",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "La generación en {resolution} requiere OpenDesign Pro o superior. Se mantendrá tu resolución actual hasta que actualices.",
+    "High Resolution": "Alta resolución"
   },
   "pt-BR": {
     "Billing needs attention": "Cobrança precisa de atenção",
@@ -269,7 +290,10 @@
     "Upgrade to Go+": "Fazer upgrade para Go+",
     "Unlisted playtest links unlocked on your plan": "Links não listados desbloqueados no seu plano",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "Entre e faça upgrade para o Plus para gerar ativos 3D, arte, SFX, narrações e vídeo direto no OpenGame sem API keys.",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Faça upgrade para o Plus para gerar ativos 3D, arte, SFX, música e vídeo. Também incluído no Pro e Max."
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Faça upgrade para o Plus para gerar ativos 3D, arte, SFX, música e vídeo. Também incluído no Pro e Max.",
+    "Upgrade to unlock {resolution} output": "Faça upgrade para desbloquear saída em {resolution}",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "A geração em {resolution} requer OpenDesign Pro ou superior. Sua resolução atual permanece selecionada.",
+    "High Resolution": "Alta resolução"
   },
   "it": {
     "Billing needs attention": "Fatturazione da verificare",
@@ -303,7 +327,10 @@
     "Upgrade to Go+": "Passa a Go+",
     "Unlisted playtest links unlocked on your plan": "Link non in elenco sbloccati nel tuo piano",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "Accedi e passa a Plus per generare asset 3D, grafica, SFX, voci e video in OpenGame senza API key.",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Passa a Plus per generare asset 3D, grafica, SFX, musica e video. Inclusi anche in Pro e Max."
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "Passa a Plus per generare asset 3D, grafica, SFX, musica e video. Inclusi anche in Pro e Max.",
+    "Upgrade to unlock {resolution} output": "Fai upgrade per sbloccare l'output {resolution}",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "La generazione ad alta risoluzione {resolution} richiede OpenDesign Pro o superiore. La risoluzione attuale rimane selezionata.",
+    "High Resolution": "Alta risoluzione"
   },
   "tr": {
     "Billing needs attention": "Faturalandırma kontrol edilmeli",
@@ -337,6 +364,9 @@
     "Upgrade to Go+": "Go+ Planına Geç",
     "Unlisted playtest links unlocked on your plan": "Planınızda liste dışı oyun bağlantıları açık",
     "Sign in, then upgrade to Plus to generate 3D assets, game art, SFX, voiceovers, and video right in OpenGame. No API keys to set up.": "API anahtarı kurmadan OpenGame içinde 3D varlık, oyun sanatı, SFX, seslendirme ve video üretmek için giriş yapıp Plus'a yükseltin.",
-    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "3D varlık, oyun sanatı, SFX, müzik ve video üretmek için Plus'a yükseltin. Pro ve Max planlarına da dahildir."
+    "Upgrade to Plus to generate 3D assets, game art, SFX, music, and video. Pro and Max include them too.": "3D varlık, oyun sanatı, SFX, müzik ve video üretmek için Plus'a yükseltin. Pro ve Max planlarına da dahildir.",
+    "Upgrade to unlock {resolution} output": "{resolution} çıktısını açmak için yükseltin",
+    "{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.": "{resolution} yüksek çözünürlüklü görsel ve video üretimi için OpenDesign Pro veya üzeri gerekir. Mevcut çözünürlüğünüz korunur.",
+    "High Resolution": "Yüksek Çözünürlük"
   }
 }

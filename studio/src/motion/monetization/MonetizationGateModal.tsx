@@ -42,8 +42,20 @@ function hasEntitlementImproved(
   return false;
 }
 
+function gateHookId(kind: MonetizationGateRequest['kind']) {
+  if (kind === 'balance') return 'balance_gate_topup' as const;
+  if (kind === 'resolution') return 'studio_res_gate' as const;
+  return 'concurrency_gate_upgrade' as const;
+}
+
+function gateEntrySource(kind: MonetizationGateRequest['kind']) {
+  if (kind === 'balance') return 'opengame_balance_gate' as const;
+  if (kind === 'resolution') return 'opengame_resolution_gate' as const;
+  return 'opengame_concurrency_gate' as const;
+}
+
 /**
- * Global monetization gate modal for OpenGame (balance depleted / concurrency limit).
+ * Global monetization gate modal for OpenGame (balance depleted / concurrency limit / 2K-4K resolution upgrade).
  * Opening checkout starts a 5s entitlement poll + focus refresh and auto-closes once credits or plan recover.
  */
 export function MonetizationGateModal() {
@@ -83,7 +95,7 @@ export function MonetizationGateModal() {
     setRecovered(false);
     pollAttemptsRef.current = 0;
 
-    const hookId = gate.kind === 'balance' ? 'balance_gate_topup' : 'concurrency_gate_upgrade';
+    const hookId = gateHookId(gate.kind);
     reportEntitlementModalView(gate.pageName ?? 'creative_studio', hookId, {
       ...(gate.studioId ? { studio_id: gate.studioId } : {}),
       entry_id: nextEntryId,
@@ -101,7 +113,7 @@ export function MonetizationGateModal() {
   const checkEntitlementNow = useCallback(async (fromPoll = false) => {
     const current = activeGateRef.current;
     if (!current) return;
-    const hookId = current.kind === 'balance' ? 'balance_gate_topup' : 'concurrency_gate_upgrade';
+    const hookId = gateHookId(current.kind);
     const pageName = current.pageName ?? 'creative_studio';
     if (!fromPoll) setChecking(true);
     try {
@@ -158,32 +170,38 @@ export function MonetizationGateModal() {
   if (!gate) return null;
 
   const isBalance = gate.kind === 'balance';
-  const hookId = isBalance ? 'balance_gate_topup' : 'concurrency_gate_upgrade';
-  const source = isBalance ? 'opengame_balance_gate' : 'opengame_concurrency_gate';
+  const isResolution = gate.kind === 'resolution';
+  const hookId = gateHookId(gate.kind);
+  const source = gateEntrySource(gate.kind);
   const pageName = gate.pageName ?? 'creative_studio';
   const pricingHref = campaignPricingUrl(locale, source, entryId);
   const currentPlan = account?.state === 'signed-in' && account.plan ? planLabel(account.plan, t) : t('Free plan');
   const balanceText = account?.state === 'signed-in' && account.balance != null ? formatBalance(account.balance) : null;
   const quotaPercent = account?.state === 'signed-in' ? quotaShare(account.quota) : null;
   const isPastDue = gate.reason === 'billing_past_due';
-  const tone = isPastDue ? 'danger' : 'warning';
+  const tone = isPastDue ? 'danger' : isResolution ? 'accent' : 'warning';
+  const resLabel = gate.resolutionLabel?.toUpperCase() || '2K / 4K';
 
   const title = isBalance
     ? isPastDue
       ? t('Billing needs attention')
       : t('Credits required to continue')
-    : t('Concurrency limit reached');
+    : isResolution
+      ? t('Upgrade to unlock {resolution} output', { resolution: resLabel })
+      : t('Concurrency limit reached');
 
   const description = isBalance
     ? isPastDue
       ? t('Your OpenDesign billing needs attention before generating new 3D assets, SFX, or game builds.')
       : t('Your available credits or weekly quota are depleted. Add credits or upgrade to keep generating 3D models, game art, SFX, and builds.')
-    : gate.activeCount != null && gate.limitCount != null
-      ? t('You have {active} of {limit} concurrent tasks running. Wait for a task to finish or upgrade for higher concurrency.', {
-          active: gate.activeCount,
-          limit: gate.limitCount,
-        })
-      : t('Your current plan reached its concurrent task limit. Wait a moment or upgrade for more parallel builds.');
+    : isResolution
+      ? t('{resolution} high-resolution image and video generation requires OpenDesign Pro or above. Your current resolution stays selected until you upgrade.', { resolution: resLabel })
+      : gate.activeCount != null && gate.limitCount != null
+        ? t('You have {active} of {limit} concurrent tasks running. Wait for a task to finish or upgrade for higher concurrency.', {
+            active: gate.activeCount,
+            limit: gate.limitCount,
+          })
+        : t('Your current plan reached its concurrent task limit. Wait a moment or upgrade for more parallel builds.');
 
   function handleDismiss() {
     reportEntitlementModalClick(pageName, 'close_modal', hookId, {
@@ -216,7 +234,7 @@ export function MonetizationGateModal() {
     <Dialog.Root open onOpenChange={open => { if (!open) handleDismiss(); }}>
       <Dialog.Portal>
         <Dialog.Backdrop className="om-mg-backdrop" />
-        <Dialog.Popup className="om-mg-popup" data-testid={isBalance ? 'balance-gate-dialog' : 'concurrency-gate-dialog'}>
+        <Dialog.Popup className="om-mg-popup" data-testid={isBalance ? 'balance-gate-dialog' : isResolution ? 'resolution-gate-dialog' : 'concurrency-gate-dialog'}>
           <header className="om-mg-head">
             <Dialog.Title className="om-mg-title">{title}</Dialog.Title>
             <Button variant="plain" type="button" className="om-mg-close" aria-label={t('Close')} onClick={handleDismiss}>
@@ -228,8 +246,8 @@ export function MonetizationGateModal() {
             <div className="om-mg-card" data-tone={tone}>
               <div className="om-mg-meta">
                 <span className="om-mg-pill" data-tone={tone}>
-                  <RemixIcon name={isBalance ? (isPastDue ? 'lock-line' : 'flashlight-line') : 'stack-line'} size={13} />
-                  <span>{isBalance ? t('OpenGame Credits') : t('Parallel Builds')}</span>
+                  <RemixIcon name={isBalance ? (isPastDue ? 'lock-line' : 'flashlight-line') : isResolution ? 'hd-line' : 'stack-line'} size={13} />
+                  <span>{isBalance ? t('OpenGame Credits') : isResolution ? t('High Resolution') : t('Parallel Builds')}</span>
                 </span>
                 <span className="om-mg-pill">{currentPlan}</span>
                 {campaign && (

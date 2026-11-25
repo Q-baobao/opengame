@@ -5,16 +5,18 @@
 import { useSyncExternalStore } from 'react';
 import type { Fields } from '../reporting';
 
-export type MonetizationGateKind = 'balance' | 'concurrency';
+export type MonetizationGateKind = 'balance' | 'concurrency' | 'resolution';
 
 export interface MonetizationGateRequest {
   kind: MonetizationGateKind;
   pageName?: NonNullable<Fields<'surface_view'>['page_name']>;
   studioId?: string;
   /** Optional contextual detail from a failed generation or publish call (never raw stack traces). */
-  reason?: 'insufficient_balance' | 'quota_exceeded' | 'billing_past_due' | 'concurrency_limit';
+  reason?: 'insufficient_balance' | 'quota_exceeded' | 'billing_past_due' | 'concurrency_limit' | 'high_resolution';
   activeCount?: number;
   limitCount?: number;
+  /** Requested high resolution label such as "2K" or "4K" when `kind === 'resolution'`. */
+  resolutionLabel?: string;
 }
 
 let currentGate: MonetizationGateRequest | null = null;
@@ -48,6 +50,10 @@ export function openBalanceGate(options: Omit<MonetizationGateRequest, 'kind'> =
 
 export function openConcurrencyGate(options: Omit<MonetizationGateRequest, 'kind'> = {}) {
   openMonetizationGate({ kind: 'concurrency', pageName: 'creative_studio', studioId: 'game', ...options });
+}
+
+export function openResolutionGate(options: Omit<MonetizationGateRequest, 'kind'> = {}) {
+  openMonetizationGate({ kind: 'resolution', reason: 'high_resolution', pageName: 'creative_studio', ...options });
 }
 
 export function closeMonetizationGate() {
@@ -102,7 +108,7 @@ export function detectMonetizationGateFromError(error: { status?: number; code?:
   return null;
 }
 
-/** Reads an optional `?previewGate=balance|concurrency` query parameter for QA and PM preview. */
+/** Reads an optional `?previewGate=balance|concurrency|resolution` query parameter for QA and PM preview. */
 export function readPreviewGateFromSearch(search: string): MonetizationGateRequest | null {
   const param = new URLSearchParams(search).get('previewGate');
   if (param === 'balance') {
@@ -110,6 +116,9 @@ export function readPreviewGateFromSearch(search: string): MonetizationGateReque
   }
   if (param === 'concurrency') {
     return { kind: 'concurrency', reason: 'concurrency_limit', activeCount: 2, limitCount: 2, pageName: 'creative_studio', studioId: 'game' };
+  }
+  if (param === 'resolution') {
+    return { kind: 'resolution', reason: 'high_resolution', resolutionLabel: '4K', pageName: 'creative_studio', studioId: 'design' };
   }
   return null;
 }

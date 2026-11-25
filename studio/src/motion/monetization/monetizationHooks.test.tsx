@@ -139,4 +139,13 @@ describe('OpenGame monetization attribution & gate hooks', () => {
     expect(document.querySelector('[data-testid="concurrency-gate-dialog"]')).toBeNull();
     expect(tracked().some(item => item.event === 'ui_click' && item.properties.element === 'close_modal' && item.properties.hook_id === 'concurrency_gate_upgrade')).toBe(true);
   });
+
+  it('recognizes ?previewGate=resolution and routes 2K/4K gate with studio_res_gate attribution', async () => {
+    const preview = readPreviewGateFromSearch('?previewGate=resolution');
+    expect(preview).toMatchObject({ kind: 'resolution', resolutionLabel: '4K' });
+    const url = new URL(campaignPricingUrl('zh-CN', 'opengame_resolution_gate', '7d1c6f4e-6a1f-4c55-9a43-0c7a4a0a8f11'));
+    expect(url.searchParams.get('utm_source')).toBe('opengame');
+    expect(url.searchParams.get('utm_medium')).toBe('resolution_gate');
+    expect(url.searchParams.get('od_entry_id')).toBe('opengame-7d1c6f4e-6a1f-4c55-9a43-0c7a4a0a8f11');
+  });
 });

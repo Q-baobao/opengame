@@ -63,6 +63,9 @@ export type CampaignEntrySource =
   | 'openmotion_header_pricing'
   | 'opengame_balance_gate'
   | 'opengame_concurrency_gate'
+  | 'opengame_resolution_gate'
+  | 'opengame_studio_free_gate'
+  | 'opengame_agent_upgrade'
   | 'opengame_artifact_upgrade'
   | 'opengame_publish_unlisted'
   | 'opengame_campaign_modal';
@@ -78,6 +81,9 @@ const utmMedium: Record<CampaignEntrySource, string> = {
   openmotion_header_pricing: 'header',
   opengame_balance_gate: 'balance_gate',
   opengame_concurrency_gate: 'concurrency_gate',
+  opengame_resolution_gate: 'resolution_gate',
+  opengame_studio_free_gate: 'studio_free_gate',
+  opengame_agent_upgrade: 'agent_upgrade',
   opengame_artifact_upgrade: 'artifact_upgrade',
   opengame_publish_unlisted: 'game_publish_unlisted',
   opengame_campaign_modal: 'campaign_modal',
