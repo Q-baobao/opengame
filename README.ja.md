@@ -151,7 +151,7 @@ OpenGame は [`templates/games/`](templates/games/) に**すぐ遊べる 26 本�
 <tr>
 <td width="50%" valign="top">
 <img src="templates/games/lighthouse-log/cover.webp" width="100%" alt="Lighthouse Log — 嵐の灯台サバイバル物語"><br>
-<strong>Lighthouse Log（灯台日誌）</strong> · <code>アニメ · ストーリー · サバイバル</code><br>
+<strong>Lighthouse Log（灯台日誌）</strong> · <code>アニメ · ビジュアルノベル · サバイバル</code><br>
 7日間の嵐の夜、燃料をやりくりし苦渋の無線判断を下しながら海辺の灯台の灯を守り抜く物語サバイバル。<br>
 <a href="templates/games/lighthouse-log/">ソースを見る →</a>
 </td>
@@ -165,7 +165,7 @@ OpenGame は [`templates/games/`](templates/games/) に**すぐ遊べる 26 本�
 <tr>
 <td width="50%" valign="top">
 <img src="templates/games/night-train/cover.webp" width="100%" alt="Night Train Letters — 雨夜の海行き列車 分岐ノベル"><br>
-<strong>Night Train Letters（夜行列車の手紙）</strong> · <code>ストーリー · 分岐ノベル</code><br>
+<strong>Night Train Letters（夜行列車の手紙）</strong> · <code>ビジュアルノベル · 分岐ストーリー</code><br>
 雨夜の海へ向かう列車で綴られる3通の届かぬ手紙。ピュア HTML で描く繊細なインタラクティブ分岐ノベル。<br>
 <a href="templates/games/night-train/">ソースを見る →</a>
 </td>
@@ -247,10 +247,10 @@ OpenGame は [`templates/games/`](templates/games/) に**すぐ遊べる 26 本�
 | **Lane Turret** | シューター | ドット絵 | 9:16 縦画面 | 強化カード選択付きの自動砲台ウェーブ防衛 | [lane-turret](templates/games/lane-turret/) |
 | **Lantern Hop** | プラットフォーマー | ドット絵 | 16:9 横画面 | 月夜の屋根を駆けるキツネの二段ジャンプ・エンドレスランナー | [lantern-hop](templates/games/lantern-hop/) |
 | **Last Light** | ホラー | ミニマル | 16:9 横画面 | 懐中電灯の光だけで廃校から脱出するサバイバルホラー | [last-light](templates/games/last-light/) |
-| **Lighthouse Log** | ストーリー | アニメ | 16:9 横画面 | 嵐の7日間を燃料管理と無線選択で生き抜く物語サバイバル | [lighthouse-log](templates/games/lighthouse-log/) |
+| **Lighthouse Log** | ビジュアルノベル | アニメ | 16:9 横画面 | 嵐の7日間を燃料管理と無線選択で生き抜く物語サバイバル | [lighthouse-log](templates/games/lighthouse-log/) |
 | **Merge Bakery** | カジュアル | アニメ | 9:16 縦画面 | 焼成・マージ・時間制限オーダーをこなすベーカリーパズル | [merge-bakery](templates/games/merge-bakery/) |
 | **Neon Drift** | レーシング | 3D | 16:9 横画面 | 雨夜のシンセウェーブ高速道路をすり抜けるブーストレーシング | [neon-drift](templates/games/neon-drift/) |
-| **Night Train Letters** | ストーリー | ミニマル | 16:9 横画面 | 夜行列車で3通の届かぬ手紙を辿る分岐ナラティブ | [night-train](templates/games/night-train/) |
+| **Night Train Letters** | ビジュアルノベル | ミニマル | 16:9 横画面 | 夜行列車で3通の届かぬ手紙を辿る分岐ナラティブ | [night-train](templates/games/night-train/) |
 | **Periscope Depth** | シューター | ミニマル | 16:9 横画面 | 潜望鏡で艦隊を魚雷攻撃し爆雷を回避する潜水艦アクション | [periscope-depth](templates/games/periscope-depth/) |
 | **Pin Rescue** | カジュアル | ミニマル | 9:16 縦画面 | 溶岩・水・黄金を操る王道ピン抜き物理パズル | [pin-rescue](templates/games/pin-rescue/) |
 | **Rooftop Roast** | カジュアル | ミニマル | 16:9 横画面 | `SHOP` 定数を書き換えるだけでブランド差し替え可能なカフェ販促ゲーム | [rooftop-roast](templates/games/rooftop-roast/) |

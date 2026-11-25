@@ -2,6 +2,7 @@
 import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { attributedEntryId, PRODUCT_UTM_SOURCE } from '../../../../shared/product-identity';
 import { validProperties } from '../../../../tracking/core.ts';
 import { studioEvents } from '../../../../tracking/events.ts';
 import { I18nProvider } from '../../i18n/I18n';
@@ -46,10 +47,11 @@ describe('OpenGame monetization attribution & gate hooks', () => {
     closeMonetizationGate();
   });
 
-  it('keeps checkout od_entry_id identical to the click entry_id for joinable attribution', () => {
+  it('carries OpenGame product attribution on checkout links while keeping raw click entry_id', () => {
     const id = '7d1c6f4e-6a1f-4c55-9a43-0c7a4a0a8f11';
     const url = new URL(campaignPricingUrl('zh-CN', 'opengame_balance_gate', id));
-    expect(url.searchParams.get('od_entry_id')).toBe(id);
+    expect(url.searchParams.get('od_entry_id')).toBe(attributedEntryId(id));
+    expect(url.searchParams.get('utm_source')).toBe(PRODUCT_UTM_SOURCE);
     expect(url.searchParams.get('utm_medium')).toBe('balance_gate');
     expect(url.searchParams.get('od_origin')).toBe('openmotion');
     expect(url.searchParams.get('od_entry_source')).toBe('openmotion_manage_subscription');
@@ -108,7 +110,7 @@ describe('OpenGame monetization attribution & gate hooks', () => {
     const cta = document.querySelector<HTMLAnchorElement>('[data-testid="monetization-gate-cta"]')!;
     cta.addEventListener('click', event => event.preventDefault());
     const url = new URL(cta.href);
-    expect(url.searchParams.get('od_entry_id')).toBe(impression!.properties.entry_id);
+    expect(url.searchParams.get('od_entry_id')).toBe(attributedEntryId(String(impression!.properties.entry_id)));
 
     await act(async () => {
       cta.click();

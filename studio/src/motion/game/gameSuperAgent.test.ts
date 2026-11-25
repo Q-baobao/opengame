@@ -85,6 +85,26 @@ describe('playable ads in Super Agent', () => {
     }
   });
 
+  it('formats story genre as visual novel in handoffs and strips both visual novel and legacy story prefixes', async () => {
+    const brief = '用一封封信讲完的分支悬疑故事';
+    const workspace = await mkdtemp(join(tmpdir(), 'openmotion-game-vn-'));
+    try {
+      const service = new GameProjects(workspace);
+      const { game: created, agentInstruction: instruction } = await service.create({
+        prompt: brief, genre: 'story', style: 'anime', setting: 'retro',
+        multiplayer: false, orientation: 'landscape',
+      });
+      expect(instruction).toContain('Brief: anime style, visual novel, retro setting.');
+      const savedText = buildDirectGamePrompt(created, instruction);
+      expect(savedText).toContain('genre=story (visual novel)');
+      expect(readDirectGameBrief(savedText, created.id)).toBe(brief);
+      const legacyStoryInstruction = instruction.replace('visual novel', 'story');
+      expect(readDirectGameBrief(buildDirectGamePrompt(created, legacyStoryInstruction), created.id)).toBe(brief);
+    } finally {
+      await rm(workspace, { recursive: true, force: true });
+    }
+  });
+
   it('offers a portrait single-player playable-ad quick idea', () => {
     const idea = GAME_STUDIO_QUICK_IDEAS.find(item => item.playableAd);
     expect(idea).toMatchObject({ orientation: 'portrait' });

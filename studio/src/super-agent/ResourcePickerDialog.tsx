@@ -189,8 +189,9 @@ export function resourceDisplaySubtitle({ kind, subtitle, scenario, modality, si
   const scenarioLabel = findDesignScenario(scenario)?.label;
   return subtitle.split(' · ').map(part => {
     if (scenarioLabel && part === scenario) return t(scenarioLabel);
-    if (kind === 'game-project' && Object.hasOwn(genreLabels, part)) {
-      return t(genreLabels[part as keyof typeof genreLabels]);
+    const genreKey = part.toLowerCase();
+    if (kind === 'game-project' && Object.hasOwn(genreLabels, genreKey)) {
+      return t(genreLabels[genreKey as keyof typeof genreLabels]);
     }
     return t(part);
   }).join(' · ');

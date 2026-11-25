@@ -151,7 +151,7 @@ Guide a scarf-wearing pixel fox across layered moonlit rooftops, double-jumping 
 <tr>
 <td width="50%" valign="top">
 <img src="templates/games/lighthouse-log/cover.webp" width="100%" alt="Lighthouse Log — Anime stormy-night narrative survival"><br>
-<strong>Lighthouse Log</strong> · <code>Anime · Story · Survival</code><br>
+<strong>Lighthouse Log</strong> · <code>Anime · Visual novel · Survival</code><br>
 Keep a coastal lighthouse burning through seven stormy nights, rationing fuel and making impossible radio choices.<br>
 <a href="templates/games/lighthouse-log/">Inspect source →</a>
 </td>
@@ -165,7 +165,7 @@ Search an abandoned school for three keys before your torch dies while keeping t
 <tr>
 <td width="50%" valign="top">
 <img src="templates/games/night-train/cover.webp" width="100%" alt="Night Train Letters — Interactive branching story"><br>
-<strong>Night Train Letters</strong> · <code>Story · Branching Narrative</code><br>
+<strong>Night Train Letters</strong> · <code>Visual novel · Branching Narrative</code><br>
 Three unsent letters on a rain-soaked night train to the sea — an intimate branching narrative built in pure HTML.<br>
 <a href="templates/games/night-train/">Inspect source →</a>
 </td>
@@ -247,10 +247,10 @@ Bake dough, merge matching pastries, and serve timed customer orders to hit \$25
 | **Lane Turret** | Shooter | Pixel | 9:16 Portrait | Auto-turret wave defense with upgrade cards | [lane-turret](templates/games/lane-turret/) |
 | **Lantern Hop** | Platformer | Pixel | 16:9 Landscape | Moonlit rooftop fox endless double-jump runner | [lantern-hop](templates/games/lantern-hop/) |
 | **Last Light** | Horror | Minimal | 16:9 Landscape | Flashlight survival escape through an abandoned school | [last-light](templates/games/last-light/) |
-| **Lighthouse Log** | Story | Anime | 16:9 Landscape | Seven stormy nights of fuel rationing & branching radio choices | [lighthouse-log](templates/games/lighthouse-log/) |
+| **Lighthouse Log** | Visual novel | Anime | 16:9 Landscape | Seven stormy nights of fuel rationing & branching radio choices | [lighthouse-log](templates/games/lighthouse-log/) |
 | **Merge Bakery** | Casual | Anime | 9:16 Portrait | Bake, merge pastries, and clear timed customer orders | [merge-bakery](templates/games/merge-bakery/) |
 | **Neon Drift** | Racing | 3D | 16:9 Landscape | Rain-slick synthwave highway traffic weaving & boost | [neon-drift](templates/games/neon-drift/) |
-| **Night Train Letters** | Story | Minimal | 16:9 Landscape | Intimate branching story of three unsent letters on a night train | [night-train](templates/games/night-train/) |
+| **Night Train Letters** | Visual novel | Minimal | 16:9 Landscape | Intimate branching story of three unsent letters on a night train | [night-train](templates/games/night-train/) |
 | **Periscope Depth** | Shooter | Minimal | 16:9 Landscape | Submarine patrol: torpedo carriers on periscope, dodge sonar depth charges | [periscope-depth](templates/games/periscope-depth/) |
 | **Pin Rescue** | Casual | Minimal | 9:16 Portrait | Pull-the-pin lava, water, and gold physics puzzles | [pin-rescue](templates/games/pin-rescue/) |
 | **Rooftop Roast** | Casual | Minimal | 16:9 Landscape | Brandable café promo drone game — edit one `SHOP` object to rebrand | [rooftop-roast](templates/games/rooftop-roast/) |

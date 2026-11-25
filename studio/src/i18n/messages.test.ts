@@ -8,6 +8,8 @@ import templateUi from './template-ui.json';
 import superAgentUi from './super-agent-ui.json';
 import mcpUi from './mcp-ui.json';
 import studioNavigationUi from './studio-navigation-ui.json';
+import gameStudioUi from './game-studio-ui.json';
+import { gameGenreLabels } from '../../../shared/game-contract';
 import { mcpFaq } from '../motion/mcpCapabilities';
 import { creativeStudios } from '../../../shared/studio-catalog';
 import { errorNoticeMessage } from '../components/ui/errorNoticeMessage';
@@ -228,5 +230,19 @@ it('localizes audited controls and history without translating authored names', 
     expect(historyEntryLabel('Undid: Move timeline clips', t)).toContain(t('Move timeline clips'));
     expect(historyEntryLabel('Add block: My Custom Title', t)).toContain('My Custom Title');
     expect(historyEntryLabel('My authored version name', t)).toBe('My authored version name');
+  }
+});
+
+it('localizes the Visual novel game genre across all supported locales', () => {
+  expect(gameGenreLabels.story).toBe('Visual novel');
+  expect(translate('en', gameGenreLabels.story)).toBe('Visual novel');
+  expect(translate('zh-CN', gameGenreLabels.story)).toBe('视觉小说');
+  expect(translate('ja', gameGenreLabels.story)).toBe('ビジュアルノベル');
+  for (const { locale } of languages.filter(language => language.locale !== 'en')) {
+    const entries = gameStudioUi[locale as keyof typeof gameStudioUi] as Record<string, string>;
+    for (const label of Object.values(gameGenreLabels)) {
+      expect(entries[label]?.trim(), `${locale}: ${label}`).toBeTruthy();
+      expect(translate(locale, label), `${locale}: ${label}`).toBe(entries[label]);
+    }
   }
 });

@@ -1,6 +1,5 @@
-import { gameAssetInstructions } from '../../../../shared/game-contract';
+import { gameAssetInstructions, gameGenreLabels, gameGenres, gameSettings, gameStyles, stripGameBriefPromptSuffixes } from '../../../../shared/game-contract';
 import type { CapabilityResourceRef } from '../../../../shared/capability-hub';
-import { gameGenres, gameSettings, gameStyles } from '../../../../shared/game-contract';
 import type { GameCard, GameGenre, GameSetting, GameStyle } from '../../../../shared/game-contract';
 import type { SuperAgentArtifact, SuperAgentContextTag, SuperAgentResourceAttachment } from '../../../../shared/super-agent';
 import { coverUrl, genreLabels, settingLabels, styleLabels } from './gameCatalog';
@@ -101,7 +100,7 @@ export function buildGameHiddenInstructions(game: GameCard, instruction: string,
     ? `Additional user notes: ${trimmedNotes}`
     : '';
   const contextParts = [
-    `genre=${game.genre}`,
+    `genre=${game.genre === 'story' ? 'story (visual novel)' : game.genre}`,
     game.style ? `style=${game.style}` : '',
     game.setting ? `setting=${game.setting}` : '',
     `multiplayer=${game.multiplayer}`,
@@ -122,8 +121,12 @@ export function buildDirectGamePrompt(game: GameCard, instruction: string, userN
   return buildGameHiddenInstructions(game, instruction, userNotes);
 }
 
-const gameBriefOption = `(?:(?:${gameStyles.join('|')}) style|with multiplayer|${gameGenres.join('|')}|(?:${gameSettings.join('|')}) setting)`;
-const gameBriefOptions = new RegExp(`^${gameBriefOption}(?:, ${gameBriefOption})*\\. `);
+const gameBriefGenreTokens = Array.from(new Set([
+  ...gameGenres,
+  ...Object.values(gameGenreLabels).map(label => label.toLowerCase()),
+]));
+const gameBriefOption = `(?:(?:${gameStyles.join('|')}) style|with multiplayer|${gameBriefGenreTokens.join('|')}|(?:${gameSettings.join('|')}) setting)`;
+const gameBriefOptions = new RegExp(`^${gameBriefOption}(?:, ${gameBriefOption})*\\. `, 'i');
 
 /** Show the brief from a stored Game Studio handoff without altering the original turn. */
 export function readDirectGameBrief(text: string, gameId: string): string | undefined {
@@ -160,8 +163,7 @@ export function readDirectGameBrief(text: string, gameId: string): string | unde
   const notesMarker = '\n\nAdditional user notes: ';
   const notesStart = text.indexOf(notesMarker, steps);
   if (notesStart >= 0 && notesStart < context) return text.slice(notesStart + notesMarker.length, context).trim();
-  const brief = text.slice(briefStart, steps)
-    .split(/\n\n(?:Layout: portrait 9:16 phone game\.|Format: playable ad\. Follow the playable-ad recipe)/, 1)[0]
+  const brief = stripGameBriefPromptSuffixes(text.slice(briefStart, steps))
     .replace(gameBriefOptions, '')
     .trim();
   return brief || undefined;

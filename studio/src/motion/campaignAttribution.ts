@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
+import { attributedEntryId, PRODUCT_UTM_SOURCE } from '../../../shared/product-identity';
 
 /**
  * Black Friday campaign links from OpenMotion to the OpenDesign Pricing page.
  *
  * Each link carries the cross-product attribution the Pricing page already reads (`od_entry_id`, `od_entry_source`,
  * `od_entry_at`) and keeps as the first touch through checkout, plus `od_origin=openmotion` and standard UTM fields for
- * the website's session source. The same `entry_id` is reported on the OpenMotion click, so a click can be joined to
- * the Pricing visit and payment that followed it. No account, installation or device data is placed in the address.
+ * the website's session source. Click events keep the raw UUID `entry_id`; OpenGame links add an `opengame-` prefix
+ * to `od_entry_id`, which is removed when joining clicks to Pricing visits and payments. No account, installation
+ * or device data is placed in the address.
  */
 export const BLACK_FRIDAY_CAMPAIGN = 'black_friday_2026';
 
@@ -69,8 +71,8 @@ export type CampaignEntrySource =
 /**
  * The `od_entry_source` sent for these entries. AMR keeps an attribution only for registered sources, and
  * `openmotion_manage_subscription` is the source it already accepts; an unregistered value would drop the
- * whole attribution, entry id included. Entries are distinguished by `utm_medium` and by the click event
- * that carries the exact same `entry_id`.
+ * whole attribution, entry id included. Entries are told apart by `utm_medium` and by the click event
+ * that carries the raw UUID `entry_id`.
  */
 const REGISTERED_ENTRY_SOURCE = 'openmotion_manage_subscription';
 const utmMedium: Record<CampaignEntrySource, string> = {
@@ -93,9 +95,9 @@ export function campaignPricingUrl(locale: string | undefined, source: CampaignE
   url.search = new URLSearchParams({
     od_origin: 'openmotion',
     od_entry_source: REGISTERED_ENTRY_SOURCE,
-    od_entry_id: entryId,
+    od_entry_id: attributedEntryId(entryId),
     od_entry_at: at.toISOString(),
-    utm_source: 'openmotion',
+    utm_source: PRODUCT_UTM_SOURCE,
     utm_medium: utmMedium[source],
     ...(campaign ? { utm_campaign: BLACK_FRIDAY_CAMPAIGN } : {}),
   }).toString();

@@ -10,7 +10,7 @@ A game is a local HTML/ESM project under workspace `games/<id>/`. HTTP and MCP o
 {"tool":"openmotion_game_create","arguments":{"prompt":"<brief summary>","genre":"shooter","style":"3d"}}
 ```
 
-- Supported `genre` values (`shared/game-contract.ts`): `shooter`, `platformer`, `story`, `casual`, `racing`, `horror` (defaults to `casual`). Preserve the exact sub-genre/concept in `prompt`.
+- Supported `genre` values (`shared/game-contract.ts`): `shooter`, `platformer`, `story` (visual novel), `casual`, `racing`, `horror` (defaults to `casual`). Preserve the exact sub-genre/concept in `prompt`.
 - Leave `style` omitted or `null` unless the user requested one of `pixel`, `minimal`, `ascii`, `voxel`, `anime`, `3d`. **Always pass `style: "3d"` on 3D briefs** so vendored Three.js (`vendor/`) is scaffolded.
 - Replace the neutral starter (`templates/game-kits/arcade-2d/`) palette, copy, and rules completely.
 

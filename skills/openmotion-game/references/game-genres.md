@@ -64,6 +64,6 @@ Read alongside [3C contracts](game-3c-modules.md) during planning. Pick **one pr
 - **One-button / hypercasual:** Single bound verb (tap/click/Space/Enter), unmistakable timing cue vs hazard, tightening window, instant restart ≤ 2 s.
 - **Racing:** Clear track landmarks, competitive AI lines, live rank/lap readout, enter/hold/release drift recovery.
 - **Horror / escape:** Chained spatial clues, readable light/dark contrast, telegraphed threat cues, touch-reachable interactions.
-- **Story / visual novel:** Consistent character/scene illustration, tap-to-complete / tap-to-advance dialogue box, ≥ 3 stateful choices, ≥ 2 endings, backlog, readable `390×844` layout.
+- **Visual novel (`story`):** Consistent character/scene illustration, tap-to-complete / tap-to-advance dialogue box, ≥ 3 stateful choices, ≥ 2 endings, backlog, readable `390×844` layout.
 - **Co-op survival (existing multiplayer):** Distinct enemy roles, Boss telegraph, ally revive ring, `?room=` auto-join verified via `playtest`.
 - **Playable Ad:** Follows [game-playable-ad.md](game-playable-ad.md) overrides.

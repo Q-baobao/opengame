@@ -151,7 +151,7 @@ OpenGame 在 [`templates/games/`](templates/games/) 中内置了 **26 款开箱�
 <tr>
 <td width="50%" valign="top">
 <img src="templates/games/lighthouse-log/cover.webp" width="100%" alt="灯塔手记 Lighthouse Log — 动漫风风暴生存叙事"><br>
-<strong>灯塔手记 · Lighthouse Log</strong> · <code>动漫 · 叙事生存</code><br>
+<strong>灯塔手记 · Lighthouse Log</strong> · <code>动漫 · 视觉小说 · 生存</code><br>
 在连续七个暴风雨夜守护海崖灯塔，分配最后燃料，在电台求救间做出抉择。<br>
 <a href="templates/games/lighthouse-log/">查看源码 →</a>
 </td>
@@ -165,7 +165,7 @@ OpenGame 在 [`templates/games/`](templates/games/) 中内置了 **26 款开箱�
 <tr>
 <td width="50%" valign="top">
 <img src="templates/games/night-train/cover.webp" width="100%" alt="夜行列车的信 Night Train Letters — 互动分支叙事"><br>
-<strong>夜行列车的信 · Night Train Letters</strong> · <code>叙事 · 分支剧情</code><br>
+<strong>夜行列车的信 · Night Train Letters</strong> · <code>视觉小说 · 分支剧情</code><br>
 三封未寄出的信、一列驶向大海的雨夜列车，用纯 HTML 讲述细腻分支故事。<br>
 <a href="templates/games/night-train/">查看源码 →</a>
 </td>
@@ -247,10 +247,10 @@ OpenGame 在 [`templates/games/`](templates/games/) 中内置了 **26 款开箱�
 | **星港三线炮台 (Lane Turret)** | 射击 | 像素 | 9:16 竖屏 | 三线炮台瞄准射击、收集卡牌坚守十波 | [lane-turret](templates/games/lane-turret/) |
 | **灯笼跳跃 (Lantern Hop)** | 平台 | 像素 | 16:9 横屏 | 像素狐狸月夜屋檐无尽二段跳跑酷 | [lantern-hop](templates/games/lantern-hop/) |
 | **最后的光 (Last Light)** | 恐怖 | 极简 | 16:9 横屏 | 废弃校园手电筒寻钥逃生 | [last-light](templates/games/last-light/) |
-| **灯塔手记 (Lighthouse Log)** | 叙事 | 动漫 | 16:9 横屏 | 七个暴风雨夜的燃料分配与电台道德抉择 | [lighthouse-log](templates/games/lighthouse-log/) |
+| **灯塔手记 (Lighthouse Log)** | 视觉小说 | 动漫 | 16:9 横屏 | 七个暴风雨夜的燃料分配与电台道德抉择 | [lighthouse-log](templates/games/lighthouse-log/) |
 | **合成小烘焙 (Merge Bakery)** | 休闲 | 动漫 | 9:16 竖屏 | 烘焙面团、拖拽合成点心并在 90 秒内完成订单 | [merge-bakery](templates/games/merge-bakery/) |
 | **霓虹漂移 (Neon Drift)** | 竞速 | 3D | 16:9 横屏 | 赛博霓虹雨夜高架车流穿梭与氮气加速 | [neon-drift](templates/games/neon-drift/) |
-| **夜行列车的信 (Night Train Letters)** | 叙事 | 极简 | 16:9 横屏 | 雨夜海滨列车的温情分支文字冒险 | [night-train](templates/games/night-train/) |
+| **夜行列车的信 (Night Train Letters)** | 视觉小说 | 极简 | 16:9 横屏 | 雨夜海滨列车的温情分支文字冒险 | [night-train](templates/games/night-train/) |
 | **潜望深渊 (Periscope Depth)** | 射击 | 极简 | 16:9 横屏 | 潜艇巡航：潜望镜发射鱼雷，下潜躲避声呐深水炸弹 | [periscope-depth](templates/games/periscope-depth/) |
 | **熔金拔针 (Pin Rescue)** | 休闲 | 极简 | 9:16 竖屏 | 拔针混合水火、避开岩浆赢取金币的五关解谜 | [pin-rescue](templates/games/pin-rescue/) |
 | **屋顶咖啡 (Rooftop Roast)** | 休闲 | 极简 | 16:9 横屏 | 可一键换品牌的门店营销小游戏（修改一个 `SHOP` 对象即可换皮） | [rooftop-roast](templates/games/rooftop-roast/) |
