@@ -96,7 +96,10 @@ export function AssetComposer({ active, studio, draft, setDraft, agentReferences
   const unconfiguredPreferred = Boolean(studio && gateway && preferred && !selected && preferredProvider && !preferredProvider.available);
   const providerLabel = preferredProvider?.label ?? (preferred && registeredProvider(preferred.provider)?.label) ?? preferred?.provider ?? '';
   const accountNotIncluded = selected?.provider === 'account' && preferredProvider?.mediaEntitlement === 'not-included';
-  const isLockedHighRes = (value: string) => Boolean(accountNotIncluded) && /^(2k|4k|2160p|1440p)$/i.test(value.trim());
+  const accountPlan = selected?.provider === 'account' ? preferredProvider?.plan?.trim().toLowerCase() : undefined;
+  const highResLockedForPlan = Boolean(accountNotIncluded)
+    || Boolean(accountPlan && !['pro', 'max', 'ultra', 'team', 'enterprise'].includes(accountPlan));
+  const isLockedHighRes = (value: string) => highResLockedForPlan && /^(2k|4k|2160p|1440p)$/i.test(value.trim());
   const capabilityMaxReferences = activeCapability?.input.maxReferences;
   const maximumReferences = selected
     ? Math.min(modelReferenceLimit(selected), featureRule?.maxReferences ?? Infinity, capabilityMaxReferences ?? Infinity)
