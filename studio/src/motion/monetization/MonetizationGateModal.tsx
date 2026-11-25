@@ -279,7 +279,7 @@ export function MonetizationGateModal() {
             </div>
 
             <div className="om-mg-perks">
-              <p className="om-mg-perks-title">{t('Included with OpenDesign Plus & above')}</p>
+              <p className="om-mg-perks-title">{t(isResolution ? 'Included with OpenDesign Pro & above' : 'Included with OpenDesign Plus & above')}</p>
               <ul className="om-mg-perks-list">
                 <li><RemixIcon name="checkbox-circle-fill" size={14} /><span>{t('3D models, game sprites, SFX, and music bundled in one plan')}</span></li>
                 <li><RemixIcon name="checkbox-circle-fill" size={14} /><span>{t('Higher weekly quota and parallel builds with zero API key setup')}</span></li>
